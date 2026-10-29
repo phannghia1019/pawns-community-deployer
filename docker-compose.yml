@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  pawns-node:
+    image: iproyal/pawns-cli:latest
+    container_name: pawns-peer-node
+    restart: unless-stopped
+    command:
+      - -email=phankhacbaonghia@gmail.com
+      - -password=${PAWNS_PEER_KEY:-node_auth_secret}
+      - -device-name=${DEVICE_NAME:-homelab-peer}
+      - -accept-tos
+    network_mode: host
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
